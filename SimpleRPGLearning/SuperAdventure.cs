@@ -72,6 +72,41 @@ namespace SimpleRPGLearning
 
         private void MoveTo(Location newLocation)
         {
+
+            private void UpdateInventoryListInUI(){
+                dgvInventory.RowHeadersVisible = false;
+                
+                dgvInventory.ColumnCount = 2;
+                dgvInventory.Columns[0].Name = "Name";
+                dgvInventory.Columns[0].Width = 197;
+                dgvInventory.Columns[1].Name = "Quantity";
+
+                dgvInventory.Rows.Clear();
+                foreach (InventoryItem inventoryItem in _player.Inventory)
+                {
+                    if (inventoryItem.Quantity > 0)
+                    {
+                        dgvInventory.Rows.Add(new[] {
+                            inventoryItem.Details.Name,
+                            inventoryItem.Quantity.ToString()
+                        });
+                    }
+                }
+            }
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
             // Does the location have any required items
             if(!_player.HasRequiredItemToEnterThisLocation(newLocation))
             {
