@@ -116,7 +116,35 @@ namespace SimpleRPGLearning
         }
 
 
+private void UpdateWeaponListInUI(){
+    List<Weapon> weapons = new List<Weapon>();
+    
+    foreach (InventoryItem inventoryItem in _player.Inventory)
+    {
+        if (inventoryItem.Details is Weapon)
+        {
+            if (inventoryItem.Quantity > 0)
+            {
+                weapons.Add((Weapon)inventoryItem.Details)
+            }
+        }
+    }
 
+if (weapons.Count == 0)
+{
+    //Player doesn't have any weapons so hide the combo box and use button
+    cboWeapons.Visible = false;
+    btnUseWeapon.Visible = false;
+}
+else
+{
+    cboWeapons.DataSource = weapons;
+    cboWeapons.DisplayMember = "Name";
+    cboWeapons.ValueMember = "ID";
+
+    cboWeapons.SelectedIndex = 0;
+}
+}
 
 
 
